@@ -18,4 +18,5 @@ Route::get('/', function () {
 });
 
 Route::post('/book',[BooksController::class,'post']);
+Route::post('/book/{book}',[BooksController::class,'update']);
 

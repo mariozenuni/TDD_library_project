@@ -10,4 +10,6 @@ class Book extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+
 }

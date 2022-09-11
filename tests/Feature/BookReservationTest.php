@@ -22,4 +22,40 @@ class BookReservationTest extends TestCase
      $response->assertOk();
      $this->assertCount(1,Book::all());
   }
+  /** @test */
+  public function title_is_required()
+  {
+
+  // $this->withoutExceptionHandling();
+
+   $response =  $this->post('/book',[
+        'title' => 'Test Title',
+        'author' => 'Agnie'
+     ]);
+
+     $response->assertOk();
+     $this->assertCount(1,Book::all());
+  }
+  
+
+  /** @test */
+  public function a_book_can_be_updated()
+  {
+   $this->withoutExceptionHandling();
+     
+         $this->post('/book',[
+            'title' => 'Test Title',
+            'author' => 'Agnie'
+         ]);
+
+         $book = Book::first();
+      $response = $this->post("/book/$book->id",[
+         'title'=> 'New test title',
+         'author' => 'Agnie'
+      ]);
+
+      $response->assertOk();
+      $this->assertCount(1,Book::all());
+  }
+
 }
