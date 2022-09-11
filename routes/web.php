@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\AuthorsController;
 use App\Http\Controllers\BooksController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,6 +19,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('/book',[BooksController::class,'post']);
-Route::post('/book/{book}',[BooksController::class,'update']);
-
+Route::post('/books',[BooksController::class,'store']);
+Route::patch('/book/{book}',[BooksController::class,'update']);
