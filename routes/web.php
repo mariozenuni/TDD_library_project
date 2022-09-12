@@ -20,4 +20,5 @@ Route::get('/', function () {
 });
 
 Route::post('/books',[BooksController::class,'store']);
-Route::patch('/book/{book}',[BooksController::class,'update']);
+Route::patch('/books/{book}',[BooksController::class,'update']);
+Route::delete('/books/{book}',[BooksController::class,'destroy']);

@@ -9,11 +9,22 @@ class BooksController extends Controller
 {
     public function store()
     {   
-       Book::create($this->validationRules());
+      $book = Book::create($this->validationRules());
+        
+       return redirect($book->path());
     }
     public function update(Book $book)
     {   
         $book->update($this->validationRules());
+
+        return redirect($book->path());
+    }
+
+    public function destroy(Book $book)
+    {
+        $book->delete();
+
+        return redirect('/books');
     }
 
     private function validationRules()
