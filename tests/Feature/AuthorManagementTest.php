@@ -18,12 +18,8 @@ class AuthorManagementTest extends TestCase
   {
     $this->withoutExceptionHandling();
 
-   $data = [
-    'name'=> 'Agnieszka',
-    'dob' => '06/14/1992'
-   ];
-    $response = $this->post('/authors', $data);
 
+    $response = $this->post('/authors', $this->data());
     $response->assertOk();
     $authors= Author::all();
      $this->assertCount(1,Author::all());
@@ -31,5 +27,10 @@ class AuthorManagementTest extends TestCase
      $this->assertEquals('1992/06/14',$authors->first()->dob->format('Y/m/d'));
   } 
   
-
+  public function data(){
+    return [
+      'name'=> 'Agnieszka',
+      'dob' => '06/14/1992'
+     ];
+  }
 }
