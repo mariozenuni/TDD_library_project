@@ -18,7 +18,7 @@ use RefreshDatabase;
 
   $response = $this->post('/books',$this->data()); 
 
-  $book = Book::first();
+     $book = Book::first();
     //$response->assertOk();
     $this->assertCount(1, Book::all());
 
