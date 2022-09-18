@@ -15,9 +15,10 @@ class BooksController extends Controller
     }
     public function update(Book $book)
     {   
-        $book->update($this->validationRules());
+        
+        $book->update($this->validationRules());      
 
-        return redirect($book->path());
+        return redirect($book->path()); 
     }
 
     public function destroy(Book $book)
@@ -31,7 +32,7 @@ class BooksController extends Controller
     {
        return request()->validate([
             'title'=>'required',
-            'author'=>'required'
+            'author_id'=>'required'
         ]);
     }
 }

@@ -10,7 +10,7 @@ class AuthorsController extends Controller
 {
     public function store(Request $request)
     {
-            Author::create($request->only(['name','dob'])); 
+        Author::create($request->only(['name','dob'])); 
                 
     }
     
