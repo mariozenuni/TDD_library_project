@@ -81,6 +81,27 @@ class BookResevasionTest extends TestCase
         $this->assertEquals(today(),Reservation::first()->checked_in_at);
     }
     
-    //a book can be checked out twice 
+    
+          /** @test **/
+        public function a_book_can_be_checked_out_twice()
+        {
+            $book = Book::factory()->create();
+        
+            $user =  User::factory()->create();
+    
+            $book->checkedOut($user);
+            
+            $book->checkedIn($user);
+
+            $book->checkedOut($user);
+
+            $this->assertCount(2,Reservation::all());
+      
+            $this->assertEquals($book->id,Reservation::first()->book_id);
+         
+            $this->assertEquals($user->id,Reservation::first()->user_id);
+         
+            $this->assertEquals(today(),Reservation::first()->checked_in_at);
+        }
 
 }
