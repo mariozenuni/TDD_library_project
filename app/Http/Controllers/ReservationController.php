@@ -17,16 +17,14 @@ class ReservationController extends Controller
 
     public function checkOut(Book $book) : RedirectResponse
     {
-        $user = Auth::user();
-        $book->checkedOut($user);
+        $book->checkedOut(Auth::user());
         return redirect('/reservation/'.$book->id);
     }
 
     public function checkIn(Book $book)
     {
-        $user = Auth::user();
-        $book->checkedIn($user);
-        
+        $book->checkedIn(Auth::user());
+    
         return redirect('/reservation/'.$book->id);
     }
 }

@@ -74,4 +74,39 @@ class BookReservationTest extends TestCase
     $this->assertEquals(today(),Reservation::first()->checked_in_at);
        $response->assertRedirect('/reservation/'.$book->id);
      }
+
+          /** @test **/
+    public function only_singed_in_user_can_check_in_a_book()
+    {
+        //$this->withoutExceptionHandling();
+              
+        $book = Book::factory()->create();
+
+              $response = $this->actingAs($user = User::factory()->create())
+
+                 ->post('/reservation/checkout/'.$book->id);
+
+                //logout user before trying to check in 
+            Auth::logout();
+       
+          $response=$this->post('/reservation/checkin/'.$book->id);
+
+          $response->assertRedirect('/login');
+
+              $this->assertCount(1,Reservation::all());
+              $this->assertNull(Reservation::first()->checked_in_at);
+
+       
+    }
+
+     /** @test **/
+     public function only_real_book_can_be_check_in()
+     {
+       // $this->withoutExceptionHandling();
+         // acting as a logged in user 
+         $response = $this->actingAs($user = User::factory()->create())
+              ->post('/reservation/checkin/12345')
+              ->assertStatus(404);
+        $this->assertCount(0,Reservation::all());
+     }
 }
