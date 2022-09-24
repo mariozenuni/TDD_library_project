@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use App\Models\User;
 use Exception;
 use Carbon\Carbon;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Book extends Model
 {
@@ -28,12 +29,12 @@ class Book extends Model
 
 
 
- public function checkedOut($user){
-
+ public function checkedOut(User $user){
+    return (Auth::user())?
       $this->reservations()->create([
          'user_id' => $user->id,
          'checked_out_at' =>Carbon::today()
-      ]);
+      ]) : false;
  }
 
  public function reservations(){

@@ -29,4 +29,9 @@ Route::post('/authors',[AuthorsController::class,'store']);;
 
 //reservation routes
 
-Route::post('/reservation/{book}',[ReservationController::class,'store']);
+Route::post('/reservation/checkout/{book}',[ReservationController::class,'checkOut']);
+Route::post('/reservation/checkin/{book}',[ReservationController::class,'checkIn']);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
