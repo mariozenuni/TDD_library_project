@@ -9,14 +9,14 @@ use App\Models\Reservation;
 use Carbon\Carbon;
 use Exception;
 
-class BookResevasionTest extends TestCase
+class ResevasionTest extends TestCase
 {
    use  RefreshDatabase;
 
     /** @test **/
     public function a_book_can_be_checked_out()
     {
-        //$this->withExceptionHandling();
+        
         $book = Book::factory()->create();
 
         $user =  User::factory()->create();
@@ -83,7 +83,7 @@ class BookResevasionTest extends TestCase
     
     
           /** @test **/
-        public function a_book_can_be_checked_out_twice()
+        public function a_user_can_book_can_checked_out_a_book_twice()
         {
             $book = Book::factory()->create();
         

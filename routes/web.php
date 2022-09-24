@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthorsController;
 use App\Http\Controllers\BooksController;
+use App\Http\Controllers\ReservationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,6 +25,8 @@ Route::put('/books/{book}',[BooksController::class,'update']);
 Route::delete('/books/{book}',[BooksController::class,'destroy']);
 
 //author routes
-
 Route::post('/authors',[AuthorsController::class,'store']);;
 
+//reservation routes
+
+Route::post('/reservation/{book}',[ReservationController::class,'store']);
